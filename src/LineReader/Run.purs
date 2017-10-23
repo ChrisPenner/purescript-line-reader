@@ -53,15 +53,22 @@ runLineReader opts prog =
 -- | Read a single line from input.
 readLine
   :: forall r e
-   . Run (reader :: READER Interface, aff :: AFF (readline :: READLINE, console :: CONSOLE, exception :: EXCEPTION | e) | r) String
+   . Run (reader :: READER Interface
+         , aff :: AFF (readline :: READLINE
+                      , console :: CONSOLE
+                      , exception :: EXCEPTION
+                      | e)
+         | r
+         ) String
 readLine = ask >>= prompt >>> liftAff
 
 -- | Prompt for input, then read a line
-question :: 
-  forall e.
+question ::
+  forall r e.
   String
   -> Run (aff :: AFF (readline :: READLINE, console :: CONSOLE | e)
          , reader :: READER Interface
+         | r
          ) String
 question txt = do
   interface <- ask
