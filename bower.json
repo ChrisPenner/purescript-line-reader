@@ -1,5 +1,12 @@
 {
   "name": "purescript-line-reader",
+  "homepage": "https://github.com/ChrisPenner/purescript-line-reader",
+  "description": "Simple interface for reading/writing from console-like interfaces",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ChrisPenner/purescript-line-reader.git"
+  },
   "ignore": [
     "**/.*",
     "node_modules",
