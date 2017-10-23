@@ -1,0 +1,19 @@
+{
+  "name": "purescript-line-reader",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "output"
+  ],
+  "dependencies": {
+    "purescript-prelude": "^3.1.0",
+    "purescript-console": "^3.0.0",
+    "purescript-psci-support": "^3.0.0",
+    "purescript-aff": "^4.0.0",
+    "purescript-transformers": "^3.4.0",
+    "purescript-node-readline-aff": "^0.1.2",
+    "purescript-run": "^1.0.0",
+    "purescript-stringutils": "^0.0.7"
+  }
+}
