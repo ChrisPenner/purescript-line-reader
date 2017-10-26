@@ -37,7 +37,7 @@ import Node.ReadLine.Aff (Interface, InterfaceOptions, READLINE, prompt)
 import Node.ReadLine.Aff (READLINE, InterfaceOptions, createConsoleInterface, createInterface, output, completer, terminal, historySize, Completer, noCompletion) as RLExports
 import Node.ReadLine.Aff (question) as A
 import Node.Stream (Readable)
-import Run (AFF, FProxy, Run, SProxy(SProxy), interpret, interpretRec, lift, liftAff, on, runBaseAff, send)
+import Run (AFF, FProxy, Run, SProxy(SProxy), interpretRec, lift, liftAff, on, runBaseAff, send)
 import Run.Reader (READER, ask, runReader)
 
 data LineReaderF r
@@ -69,9 +69,9 @@ question q = lift _linereader (Question q id)
 
 runLineReader
   :: forall r eff
-   . Run (linereader :: LINEREADER | r)
+   . Run (linereader :: LINEREADER, reader :: READER Interface, aff :: AFF (readline :: READLINE, console :: CONSOLE, exception :: EXCEPTION | eff) | r)
   ~> Run (reader :: READER Interface, aff :: AFF (readline :: READLINE, console :: CONSOLE, exception :: EXCEPTION | eff) | r)
-runLineReader = interpret (on _linereader handleLineReader send)
+runLineReader = interpretRec (on _linereader handleLineReader send)
 
 -- | Run a Line Reader computation from the Run Monad into the Aff Monad
 lineReaderToAff
